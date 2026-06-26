@@ -7,6 +7,7 @@ import com.zebrunner.carina.api.annotation.ResponseTemplatePath;
 import com.zebrunner.carina.api.annotation.SuccessfulHttpStatus;
 import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
+import com.zebrunner.carina.utils.R;
 import com.solvd.githubapi.config.GitHubProperties;
 
 @Endpoint(url = "${github_base_url}/repos/${owner}/${repo}", methodType = HttpMethodType.GET)
@@ -23,5 +24,7 @@ public class GetRepoMethod extends AbstractApiMethodV2 {
         setHeader("Accept", "application/vnd.github+json");
         addProperty("owner", owner);
         addProperty("repo", repo);
+        addProperty("owner", R.CONFIG.get("github_username"));
+        addProperty("repo", R.CONFIG.get("github_repo"));
     }
 }

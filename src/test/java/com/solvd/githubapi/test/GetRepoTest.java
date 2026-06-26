@@ -3,6 +3,7 @@ package com.solvd.githubapi.test;
 import com.solvd.githubapi.api.GetRepoMethod;
 import com.solvd.githubapi.config.GitHubProperties;
 import io.restassured.response.Response;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +15,9 @@ public class GetRepoTest {
                 GitHubProperties.username(),
                 GitHubProperties.repo()
         );
-        Assert.assertEquals(method.callAPI().statusCode(), 200, "Get repo should return 200");
+        method.callAPI();
+        method.setResponseTemplate("api/repos/rs/get_repo_rs.json");
+        method.validateResponse(JSONCompareMode.LENIENT);
     }
 
     @Test

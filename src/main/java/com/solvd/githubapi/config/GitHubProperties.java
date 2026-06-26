@@ -1,35 +1,26 @@
 package com.solvd.githubapi.config;
 
+import com.zebrunner.carina.utils.R;
+
 public class GitHubProperties {
 
-    private static final java.util.Properties props = new java.util.Properties();
-
-    static {
-        try {
-            props.load(GitHubProperties.class.getClassLoader()
-                    .getResourceAsStream("api.properties"));
-        } catch (Exception e) {
-            throw new RuntimeException("Cannot load api.properties", e);
-        }
-    }
-
     public static String get(String key) {
-        return props.getProperty(key);
+        return R.CONFIG.get(key);
     }
 
     public static String token() {
-        return get("github_token");
+        return R.CONFIG.get("github_token");
     }
 
     public static String baseUrl() {
-        return get("github_base_url");
+        return R.CONFIG.get("github_base_url");
     }
 
     public static String username() {
-        return get("github_username");
+        return R.CONFIG.get("github_username");
     }
 
     public static String repo() {
-        return get("github_repo");
+        return R.CONFIG.get("github_repo");
     }
 }

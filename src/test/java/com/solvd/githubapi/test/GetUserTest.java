@@ -3,6 +3,7 @@ package com.solvd.githubapi.test;
 import com.solvd.githubapi.api.GetUserMethod;
 import com.solvd.githubapi.config.GitHubProperties;
 import io.restassured.response.Response;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,7 +12,9 @@ public class GetUserTest {
     @Test
     public void testGetExistingUser() {
         GetUserMethod method = new GetUserMethod(GitHubProperties.username());
-        Assert.assertEquals(method.callAPI().statusCode(), 200, "Get user should return 200");
+        method.callAPI();
+        method.setResponseTemplate("api/users/rs/get_user_rs.json");
+        method.validateResponse(JSONCompareMode.LENIENT);
     }
 
     @Test

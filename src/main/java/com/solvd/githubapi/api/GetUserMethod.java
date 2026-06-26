@@ -7,6 +7,7 @@ import com.zebrunner.carina.api.annotation.ResponseTemplatePath;
 import com.zebrunner.carina.api.annotation.SuccessfulHttpStatus;
 import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
+import com.zebrunner.carina.utils.R;
 import com.solvd.githubapi.config.GitHubProperties;
 
 @Endpoint(url = "${github_base_url}/users/${username}", methodType = HttpMethodType.GET)
@@ -21,5 +22,6 @@ public class GetUserMethod extends AbstractApiMethodV2 {
         setHeader("Authorization", "Bearer " + GitHubProperties.token());
         setHeader("Accept", "application/vnd.github+json");
         addProperty("username", username);
+        addProperty("username", R.CONFIG.get("github_username"));
     }
 }
