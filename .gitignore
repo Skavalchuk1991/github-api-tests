@@ -3,3 +3,7 @@ target/
 *.iml
 *.class
 src/test/resources/api.properties
+reports/
+.DS_Store
+src/.DS_Store
+src/test/.DS_Store
