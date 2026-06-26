@@ -1,0 +1,8 @@
+{
+  "id": "!ignore",
+  "name": "${repo_name}",
+  "private": false,
+  "owner": {
+    "login": "!ignore"
+  }
+}

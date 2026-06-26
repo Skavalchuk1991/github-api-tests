@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="GitHubApiSuite" verbose="2">
+    <test name="UserTests">
+        <classes>
+            <class name="com.solvd.githubapi.test.GetUserTest"/>
+        </classes>
+    </test>
+    <test name="RepoTests">
+        <classes>
+            <class name="com.solvd.githubapi.test.GetRepoTest"/>
+        </classes>
+    </test>
+    <test name="IssuesTests">
+        <classes>
+            <class name="com.solvd.githubapi.test.GetIssuesTest"/>
+        </classes>
+    </test>
+    <test name="CreateRepoTests">
+        <classes>
+            <class name="com.solvd.githubapi.test.CreateRepoTest"/>
+        </classes>
+    </test>
+    <test name="DeleteRepoTests">
+        <classes>
+            <class name="com.solvd.githubapi.test.DeleteRepoTest"/>
+        </classes>
+    </test>
+</suite>
