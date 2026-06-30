@@ -5,15 +5,16 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryPage extends AbstractPage {
 
     @FindBy(css = ".inventory_list")
     private ExtendedWebElement inventoryList;
+
+    @FindBy(css = ".inventory_item")
+    private List<ProductCard> productCards;
 
     @FindBy(css = ".shopping_cart_badge")
     private ExtendedWebElement cartBadge;
@@ -36,13 +37,7 @@ public class InventoryPage extends AbstractPage {
     }
 
     public List<ProductCard> getProductCards() {
-        List<ExtendedWebElement> elements = findExtendedWebElements(By.cssSelector(".inventory_item"));
-        List<ProductCard> cards = new ArrayList<>();
-        for (int i = 0; i < elements.size(); i++) {
-            ProductCard card = new ProductCard(getDriver(), By.cssSelector(".inventory_item:nth-child(" + (i + 1) + ")"));
-            cards.add(card);
-        }
-        return cards;
+        return productCards;
     }
 
     public boolean isCartBadgeDisplayed() {

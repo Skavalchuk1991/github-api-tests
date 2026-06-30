@@ -5,7 +5,6 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.By;
 
 public class ProductCard extends AbstractUIObject {
 
@@ -20,11 +19,6 @@ public class ProductCard extends AbstractUIObject {
 
     public ProductCard(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
-    }
-
-    public ProductCard(WebDriver driver, By by) {
-        super(driver);
-        setRootBy(by);
     }
 
     public String getProductName() {

@@ -60,16 +60,21 @@ public class SauceDemoTest extends AbstractWebTest {
     public void testAddMultipleProductsToCart() {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.open();
-        InventoryPage inventoryPage = loginPage.login(VALID_USER, PASSWORD);
+        loginPage.login(VALID_USER, PASSWORD);
 
-        List<ProductCard> products = inventoryPage.getProductCards();
-        Assert.assertTrue(products.size() >= 3, "There should be at least 3 products");
+        InventoryPage page1 = new InventoryPage(getDriver());
+        page1.getProductCards().get(0).clickAddToCart();
+        waitForCartCount(page1, "1");
 
-        products.get(0).clickAddToCart();
-        products.get(1).clickAddToCart();
-        products.get(2).clickAddToCart();
+        InventoryPage page2 = new InventoryPage(getDriver());
+        page2.getProductCards().get(1).clickAddToCart();
+        waitForCartCount(page2, "2");
 
-        Assert.assertEquals(inventoryPage.getCartBadgeCount(), "3",
+        InventoryPage page3 = new InventoryPage(getDriver());
+        page3.getProductCards().get(2).clickAddToCart();
+        waitForCartCount(page3, "3");
+
+        Assert.assertEquals(page3.getCartBadgeCount(), "3",
                 "Cart badge should show 3 items after adding 3 products");
     }
 
@@ -103,6 +108,25 @@ public class SauceDemoTest extends AbstractWebTest {
 
         Assert.assertTrue(loginPage.isPageOpened(),
                 "Should return to login page after logout");
+    }
+
+    private void waitForCartCount(InventoryPage page, String expectedCount) {
+        long deadline = System.currentTimeMillis() + 5000;
+        while (System.currentTimeMillis() < deadline) {
+            try {
+                if (page.isCartBadgeDisplayed() && expectedCount.equals(page.getCartBadgeCount())) {
+                    return;
+                }
+            } catch (Exception ignored) {
+                // badge might be mid-update / stale, retry
+            }
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+        }
     }
 
     private double parsePrice(String priceText) {
