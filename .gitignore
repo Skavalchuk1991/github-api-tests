@@ -7,3 +7,8 @@ reports/
 .DS_Store
 src/.DS_Store
 src/test/.DS_Store
+chromedriver
+selenium-server.jar
+chromedriver-mac-arm64/
+chromedriver-mac-arm64.zip
+reports/
